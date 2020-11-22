@@ -1,25 +1,26 @@
 import React from 'react'
 import Part from './Part'
+import {nanoid} from 'nanoid'
 
 const Content = ({course}) => {
 
   let total = 0
 
-  const calculateTotal= (x) =>{
+  const calculateTotal = (x) =>{
     total+=x
   }
 
   return(
     <div>
-        {course.map(function(c){
+        {course.map((c) => {
           total = 0
           return(
-            <div>
-              <h2 key={c.id}>{c.name}</h2>
-              {c.parts.map(function(part){
+            <div key={`${nanoid()}`}>
+              <h2>{c.name}</h2>
+              {c.parts.map((part) =>{
                 calculateTotal(part.exercises)
                   return(
-                  <Part key={`${c.id}${part.id}`} name={part.name} number={part.exercises}/>
+                  <Part key={`${nanoid()}`} name={part.name} number={part.exercises}/>
                   )
                 }
               )}
